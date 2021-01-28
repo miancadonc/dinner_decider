@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DinnerDecider</title>
+    <title>Dinner Decider</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class = "container" >
+      <div class = "navbar-header">
+        <% if !!session[:user_id] %>
+          <%= link_to "Log Out", logout_path, method: "delete", class: "navbar-brand" %>
+        <% else %>
+          <%= link_to "Sign Up", signup_path, class: "navbar-brand" %>
+          <%= link_to "Log In", login_path, class: "navbar-brand" %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class = "container" role = "main">
+      <%= yield %>
+    </div>
   </body>
 </html>
