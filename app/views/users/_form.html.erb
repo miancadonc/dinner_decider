@@ -1,10 +1,10 @@
 <%= form_with model: @user, local: true do |f| %>
 
 <%= f.label :name %>
-<%= f.text_field :name, placeholder: "#{@user.errors.full_messages.first}" %>
+<%= f.text_field :name, placeholder: "#{@user.errors.messages[:name].first}" %>
 <br>
 <%= f.label :password %>
-<%= f.password_field :password, placeholder: "#{@user.errors.full_messages.first}" %>
+<%= f.password_field :password,  placeholder: "#{@user.errors.messages[:password].first}" %>
 <br>
 
 <%= f.submit "Submit" %>
