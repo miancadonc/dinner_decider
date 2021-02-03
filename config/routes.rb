@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   root 'static#home'
 
+  get 'auth/github/callback' => 'sessions#create'
+
   get 'signup' => 'users#new'
 
   
