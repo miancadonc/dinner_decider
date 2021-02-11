@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   root 'static#home'
 
+  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   get 'signup' => 'users#new'
 
   

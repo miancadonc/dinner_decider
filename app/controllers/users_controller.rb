@@ -11,7 +11,8 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       # overwrite name if name uniqueness validation triggered so that placeholder can show
-      @user.name = nil
+      #uniqueness validation changed to email
+      @user.email = nil
       render 'new'
     end
   end
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:name, :password, :email)
   end
 
 end
