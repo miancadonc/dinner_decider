@@ -6,24 +6,33 @@ class SessionsController < ApplicationController
 
   def create
 
-    if @user = User.find_by(email: params[:email])
+    
 
-      if @user.try(:authenticate, params[:password])
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
-      else
-        redirect_to login_path, alert: "Unable to log in, please check email and password"
-      end
+   
 
-    elsif auth_hash
+    # elsif auth_hash
 
-      pp auth_hash
+    #   pp auth_hash
 
-      redirect_to root_path
+    
+
+    #   redirect_to root_path
+
+    # end
+
+    
+
+    # params[:password] = 
+
+    if auth_hash
+
+      sign_in_with_auth(auth_hash)
+
+    else
+
+      sign_in_with_password
 
     end
-
-    # pp auth_hash
 
     # redirect_to root_path
 
