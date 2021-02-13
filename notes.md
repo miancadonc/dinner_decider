@@ -5,12 +5,12 @@ User:
 - user_name: string
 - password: password digest (use bcrypt and activerecord has_secure_password for native login; also, use omniauth from github)
 
-- has_many :recipe_books
+<!-- - has_many :recipe_books -->
 - has_many :recipes
 
-- has_many :tags through: :recipes
+<!-- - has_many :tags through: :recipes -->
 
-RecipeBook:
+<!-- RecipeBook:
 
 - name: string (maybe make a validation for max length here. Definitely validate presence)
 - description: string
@@ -22,7 +22,9 @@ RecipeBook:
 
     Must choose between either allowing direct ownership of recipes by users or instantiating a personal recipe book on user creation and making it a placeholder selection.
 
-    Should recipes belong to a single recipe_book or many?
+    Should recipes belong to a single recipe_book or many? -->
+
+    Shelved for now
 
 Recipe:
 
@@ -40,8 +42,8 @@ Recipe:
 - image: string (reach)
 - prep_time/cook_time/total_time : integer (put units in in view- store as integer for addition)(reach)
 
-- has_many :recipe_books
-    Again I'm not sure if I want to make a join model for a has_many to has_many or instead has a belongs_to with recipe_books
+<!-- - has_many :recipe_books
+    Again I'm not sure if I want to make a join model for a has_many to has_many or instead has a belongs_to with recipe_books -->
 <!-- - has_many :users, through: :recipe_books --> recipes should be copied instead of shared so that updating one user's version doesn't change others
 - belongs_to :user
 - has_many :recipe_ingredients
@@ -94,4 +96,4 @@ maybe keeps track of created_at
 
 //REACH FEATURES
 
-- possibly allow users to see, rate, and copy other users recipes. How would they copy them?
+- possibly allow users to see, rate, and copy other users' recipes. How would they copy them? -- probably instatiate a new recipe that belongs to them but with the same attributes, as well as instantiating any needed new dependent objects such as tags and ingredients
