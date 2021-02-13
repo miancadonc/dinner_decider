@@ -8,6 +8,8 @@ User:
 - has_many :recipe_books
 - has_many :recipes
 
+- has_many :tags through: :recipes
+
 RecipeBook:
 
 - name: string (maybe make a validation for max length here. Definitely validate presence)
