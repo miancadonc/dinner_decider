@@ -4,6 +4,7 @@ class User < ApplicationRecord
     # validates :email, uniqueness: { message: "Email already taken" }
 
     has_many :recipes
+    has_many :tags, through: :recipes
 
     def self.create_from_omniauth(auth_hash)
         
