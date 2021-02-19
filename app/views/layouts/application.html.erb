@@ -21,15 +21,16 @@
       </div>
     </div>
 
-    <% flash.each do |type, msg| %>
-      <div class="alert alert-info">
-        <%= msg %>
-      </div>
-    <% end %>
+   
 
+    <div class = "container wrapper" role = "main">
 
-
-    <div class = "container" role = "main">
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-info">
+          <%= msg %>
+        </div>
+      <% end %>
+      
       <%= yield %>
     </div>
   </body>
