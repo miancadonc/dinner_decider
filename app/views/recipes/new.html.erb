@@ -1,18 +1,38 @@
-<%= form_with model: @recipe, local: true do |f| %>
+<%= form_with model: @recipe, local: true, url: user_recipes_path(@user), method: :post do |recipe_field| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= recipe_field.label :name %>
+    <%= recipe_field.text_field :name %>
     <br>
 
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= recipe_field.label :description %>
+    <%= recipe_field.text_field :description %>
     <br>
 
-    <%= f.label :instructions %>
-    <%= f.text_area :instructions %>
+    <%= recipe_field.label :instructions %>
+    <%= recipe_field.text_area :instructions %>
     <br>
 
-    <%= f.submit "Create Recipe" %>
+    <h3>Ingredients:</h3>
+
+    <%= recipe_field.fields_for :recipe_ingredients do |rec_ing_field| %>    
+
+        <br>
+        <%= rec_ing_field.label :ingredient_id, "Ingredient" %>
+        <%= rec_ing_field.collection_select :ingredient_id, Ingredient.all, :id, :name, include_blank: :true  %>
+        <%= rec_ing_field.label :magnitude, "Amount"  %>
+        <%= rec_ing_field.number_field :magnitude %>
+        <%= rec_ing_field.label :unit %>
+        <%= rec_ing_field.text_field :unit %>
+        
+
+    <% end %>
+
+    
+
+
+    
+
+    <%= recipe_field.submit "Create Recipe" %>
 
 
 <% end %>
