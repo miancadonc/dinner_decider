@@ -18,7 +18,7 @@
 
         <br>
         <%= rec_ing_field.label :ingredient_id, "Ingredient" %>
-        <%= rec_ing_field.collection_select :ingredient_id, Ingredient.all, :id, :name, include_blank: :true  %>
+        <%= rec_ing_field.collection_select :ingredient_id, Ingredient.list_alphabetically, :id, :name, include_blank: :true  %>
         <%= rec_ing_field.label :magnitude, "Amount"  %>
         <%= rec_ing_field.number_field :magnitude %>
         <%= rec_ing_field.label :unit %>
