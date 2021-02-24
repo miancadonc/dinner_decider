@@ -5,7 +5,7 @@
 
 <h3>Ingredients:</h3>
 <ul>
-<% @recipe.recipe_ingredients.each do |ing| %>
+<% no_blank_ingredients(@recipe).each do |ing| %>
     <li>
         <%= ing.magnitude %> <%= ing.unit %> <%= ing.ingredient.name %>
     </li>
