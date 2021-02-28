@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
 
   get '/users/:user_id/random_recipes' => 'users#random_recipes', :as => 'random_recipes'
+  get '/users/:user_id/browse_by_tag' => 'users#browse_by_tag', :as => 'browse_by_tag'
 
 
   resources :users do
