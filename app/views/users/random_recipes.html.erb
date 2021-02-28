@@ -1,0 +1,7 @@
+<h1>How about these options?</h1>
+
+<ol>
+    <% random_recipes(@user, 3).each do |r| %>
+        <li> <%= link_to "#{r.name}", user_recipe_path(@user, r) %> </li>
+    <% end %>
+</ol>
