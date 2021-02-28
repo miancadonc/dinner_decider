@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   get 'signup' => 'users#new'
 
+  get '/users/:user_id/random_recipes' => 'users#random_recipes', :as => 'random_recipes'
+
 
   resources :users do
     resources :recipes
