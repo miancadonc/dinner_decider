@@ -1,4 +1,12 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.name %></h1>
 
-<%= @user.name %>
+<h3>Your Recipes:</h3>
+<ol>
+<% @user.recipes.each do |r| %>
+    <li><%= link_to "#{r.name}", user_recipe_path(@user, r) %></li>
+<% end %>
+</ol>
+
+<h3>New Recipe:</h3>
+<br>
+<%= link_to "Create a new recipe", new_user_recipe_path(@user) %>

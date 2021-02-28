@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :recipes
-    resources :ingredients
   end
+
+  resources :ingredients
 
   resources :tags, only: :create
   resources :recipe_ingredients, only: [:create, :update]
