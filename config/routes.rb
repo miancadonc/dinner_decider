@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/random_recipes' => 'users#random_recipes', :as => 'random_recipes'
   get '/users/:user_id/browse_by_tag' => 'users#browse_by_tag', :as => 'browse_by_tag'
+  get '/users/:user_id/browse_by_ingredient' => 'users#browse_by_ingredient', :as => 'browse_by_ingredient'
 
 
   resources :users do
