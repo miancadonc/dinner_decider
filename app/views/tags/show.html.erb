@@ -1,0 +1,7 @@
+<h1><%= @tag.name %> Recipes:</h1>
+
+<ol>
+    <% user_recipes(@user, @tag).each do |r| %>
+        <li><%= link_to "#{r.name}", user_recipe_path(@user, r) %>, <%= r.description %> </li>
+    <% end %>
+</ol>
