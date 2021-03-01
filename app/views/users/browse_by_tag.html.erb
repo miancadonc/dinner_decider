@@ -1,1 +1,13 @@
 <%= @user.name %>
+
+<h3>Your Tags:</h3>
+
+<ul>
+    <% @user.tags.uniq do |tag| %>
+    <%# I have absolutely no idea why, but adding uniq here makes the links appear. Since I wanted to add it anyway, it's no problem, but it is really weird. %>
+    <%# The method user.tags returns the tag from each recipe_tag, so there are duplicates. That's why I was going to use uniq anyway. Still very odd %>
+        <li>
+            <%= link_to "#{tag.name}", user_tag_path(@user, tag) %>
+        </li>
+    <% end %>
+</ul>
