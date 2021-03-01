@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'recipe_tags/new'
+  get 'recipe_tags/create'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create' 
   delete 'logout' => 'sessions#destroy'
@@ -14,12 +16,14 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    resources :recipes
+    resources :recipes do
+      resources :recipe_tags, only: [:new, :create]
+    end
   end
 
   resources :ingredients
 
-  resources :tags, only: :create
+  resources :tags, only: [:create, :new]
   resources :recipe_ingredients, only: [:create, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
