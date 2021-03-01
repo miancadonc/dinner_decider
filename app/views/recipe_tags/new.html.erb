@@ -1,0 +1,7 @@
+<h1>Add a tag to <%= @recipe.name %>!</h1>
+<%= form_with model: @recipe_tag, local: true, url: user_recipe_recipe_tags_path(@user, @recipe), method: :post do |rec_tag_field| %>
+
+    <%= rec_tag_field.label :tag_id, "Tag" %>
+    <%= rec_tag_field.collection_select :tag_id, Tag.list_alphabetically, :id, :name  %>
+    <%= rec_tag_field.submit "Add Tag!" %>
+<% end %>
