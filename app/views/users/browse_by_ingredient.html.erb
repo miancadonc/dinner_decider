@@ -4,7 +4,7 @@
 
 <ul>
     <% user_ingredients(@user).each do |ingredient| %>
-    <%# I have absolutely no idea why, but adding uniq here makes the links appear. Since I wanted to add it anyway, it's no problem, but it is really weird. %>
+    <%# I have absolutely no idea why, but adding uniq to user_ingredients makes the links appear. Since I wanted to add it anyway, it's no problem, but it is really weird. %>
     <%# The method user.ingredients returns the ingredient from each recipe_ingredient, so there are duplicates. That's why I was going to use uniq anyway. Still very odd %>
     <%# Also, this page and the browse_by_tag page are very similar and could probably be abstracted %>
         <li>
