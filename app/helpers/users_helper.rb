@@ -11,4 +11,10 @@ module UsersHelper
         ingredients = user.ingredients.uniq.select {|ing| ing.name != ""  }
     end
 
+    def user_recipes(user, object)
+        object.recipes.select{|r| r.user == user }
+    end
+
+    #user_recipes moved to users_helper.rb to abstract for use with ingredients as well as tags
+
 end
