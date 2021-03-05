@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
     has_many :recipes
     has_many :tags, through: :recipes
+    has_many :ingredients, through: :recipes
 
     def self.create_from_omniauth(auth_hash)
         
