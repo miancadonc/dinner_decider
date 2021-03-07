@@ -1,0 +1,6 @@
+<h3>Your Recipes:</h3>
+<ol>
+<% @user.recipes.each do |r| %>
+    <li><%= link_to "#{r.name}", user_recipe_path(@user, r) %></li>
+<% end %>
+</ol>
