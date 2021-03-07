@@ -23,6 +23,10 @@ class RecipesController < ApplicationController
 
     end
 
+    def index
+        @user = User.find(params[:user_id])
+    end
+
     private
 
     def recipe_params
