@@ -1,12 +1,20 @@
 <h1><%= @user.name %></h1>
 
-<h3>Your Recipes:</h3>
-<ol>
-<% @user.recipes.each do |r| %>
-    <li><%= link_to "#{r.name}", user_recipe_path(@user, r) %></li>
-<% end %>
-</ol>
+<h3>You have <%= @user.recipes.count %> recipes!</h3>
+<h1> <%= button_to "See Your Recipes", user_recipes_path(@user), :method => :get %> </h1>
 
 <h3>New Recipe:</h3>
 <br>
 <%= link_to "Create a new recipe", new_user_recipe_path(@user) %>
+
+<h1>Having trouble deciding what to make for dinner? Try one of these options:</h1>
+
+<%= button_to "See three random recipes!", random_recipes_path(@user), :method => :get %>
+<br>
+<br>
+
+<%= button_to "Browse by Tag!", browse_by_tag_path(@user), :method => :get %>
+<br>
+<br>
+
+<%= button_to "Browse by Ingredient!", browse_by_ingredient_path(@user), :method => :get %>

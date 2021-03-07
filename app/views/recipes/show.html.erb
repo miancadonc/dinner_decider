@@ -15,4 +15,13 @@
 <h3>Instructions:</h3>
 <p> <%= @recipe.instructions %> </p>
 
-<%= link_to "Back to user page", user_path(@recipe.user_id) %>
+<h3>Tags:</h3>
+<ul>
+<% @recipe.tags.each do |tag| %>
+    <li>
+        <%= tag.name %>
+    </li>
+<% end %>
+</ul>
+
+<%= link_to "Add a tag!", new_user_recipe_recipe_tag_path(@user, @recipe) %>
