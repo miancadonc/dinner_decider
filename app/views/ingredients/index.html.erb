@@ -1,0 +1,7 @@
+<%= link_to "Create a New Ingredient", new_ingredient_path %>
+
+<ul>
+<% @ingredients.each do |i| %>
+    <li><%= i.name %><%= button_to "X", ingredient_path(i), method: :delete %></li> 
+<%end%>
+</ul>
