@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
 
         if @recipe.update(recipe_params)
             flash[:notice] = "Successfully updated recipe!"
-            redirect_to user_path(@user)
+            redirect_to user_recipe_path(@user, @recipe)
         else
             flash[:alert] = "Sorry, something went wrong"
             render 'edit'
