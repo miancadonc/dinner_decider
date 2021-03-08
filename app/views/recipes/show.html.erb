@@ -19,7 +19,7 @@
 <ul>
 <% @recipe.tags.each do |tag| %>
     <li>
-        <%= link_to "#{tag.name}", user_tag_path(@user, tag) %>
+        <%= link_to "#{tag.name}", user_tag_path(@user, tag) %> <%= button_to "X", user_recipe_recipe_tag_path(@user, @recipe, tag.recipe_tags.find_by(recipe: @recipe)), method: :delete %>
     </li>
 <% end %>
 </ul>
