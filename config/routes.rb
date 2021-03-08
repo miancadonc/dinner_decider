@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :ingredients, only: :show
   end
 
-  resources :tags, only: [:create, :new]
+  resources :tags, only: [:create, :new, :index, :destroy]
   resources :ingredients
 
   resources :recipe_ingredients, only: [:create, :update]
