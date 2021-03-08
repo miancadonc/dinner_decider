@@ -23,7 +23,7 @@ class TagsController < ApplicationController
     end
 
     def index
-        @tags = Tag.all
+        @tags = Tag.all.list_alphabetically
     end
 
     def destroy

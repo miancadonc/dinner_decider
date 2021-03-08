@@ -26,8 +26,10 @@ class IngredientsController < ApplicationController
     end
 
     def index
-        @ingredients = Ingredient.all
+        @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
     end
+
+    # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
 
     def destroy
         @ingredient = Ingredient.find(params[:id])
