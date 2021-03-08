@@ -19,7 +19,7 @@
 <ul>
 <% @recipe.tags.each do |tag| %>
     <li>
-        <%= tag.name %>
+        <%= link_to "#{tag.name}", user_tag_path(@user, tag) %>
     </li>
 <% end %>
 </ul>
