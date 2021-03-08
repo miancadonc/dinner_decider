@@ -8,4 +8,9 @@ class IngredientsController < ApplicationController
     # this controller method and its partner in the tag controller smell like code. 
     # Maybe introducing before actions to the controllers (all of them, even) for params searchable objects is needed.
 
+    def new
+        @ingredient = Ingredient.new
+    end
+
+
 end
