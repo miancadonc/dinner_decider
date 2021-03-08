@@ -19,9 +19,12 @@ Rails.application.routes.draw do
     resources :recipes do
       resources :recipe_tags, only: [:new, :create, :destroy]
     end
-    resources :tags, only: [:create, :new, :show]
-    resources :ingredients
+    resources :tags, only: :show
+    resources :ingredients, only: :show
   end
+
+  resources :tags, only: [:create, :new]
+  resources :ingredients
 
   resources :recipe_ingredients, only: [:create, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
