@@ -25,6 +25,10 @@ class IngredientsController < ApplicationController
         end
     end
 
+    def index
+        @ingredients = Ingredient.all
+    end
+
     private
 
     def ingredient_params
