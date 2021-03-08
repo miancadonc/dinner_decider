@@ -12,5 +12,23 @@ class IngredientsController < ApplicationController
         @ingredient = Ingredient.new
     end
 
+    def create
+        @ingredient = Ingredient.new(ingredient_params)
+
+        if @ingredient.save
+            flash[:notice] = "Ingredient successfully created"
+            redirect_to new_ingredient_path
+        else
+            @ingredient.name = nil
+            flash[:alert] = "Something went wrong, Ingredient not saved"
+            render 'new'
+        end
+    end
+
+    private
+
+    def ingredient_params
+        params.require(:ingredient).permit(:name)
+    end
 
 end
