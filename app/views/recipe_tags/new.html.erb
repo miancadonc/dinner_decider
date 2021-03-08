@@ -5,3 +5,5 @@
     <%= rec_tag_field.collection_select :tag_id, Tag.list_alphabetically, :id, :name  %>
     <%= rec_tag_field.submit "Add Tag!" %>
 <% end %>
+
+<%= link_to "Back to recipe", user_recipe_path(@user, @recipe) %>
