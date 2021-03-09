@@ -24,4 +24,8 @@
 #     ]
 # )
 
-# If you need to seed more data, comment it out after
+# If you need to seed more data, comment it out after. If seeding a new database from scratch, uncomment everything you need.
+
+# ingredients = Ingredient.create([
+#     {name: "garlic"}, {name: "linguine"}, {name: "red pepper"}, {name: "anchovies"}, {name: "black pepper"}
+# ])

@@ -8,4 +8,40 @@ class IngredientsController < ApplicationController
     # this controller method and its partner in the tag controller smell like code. 
     # Maybe introducing before actions to the controllers (all of them, even) for params searchable objects is needed.
 
+    def new
+        @ingredient = Ingredient.new
+    end
+
+    def create
+        @ingredient = Ingredient.new(ingredient_params)
+
+        if @ingredient.save
+            flash[:notice] = "Ingredient successfully created"
+            redirect_to new_ingredient_path
+        else
+            @ingredient.name = nil
+            flash[:alert] = "Something went wrong, Ingredient not saved"
+            render 'new'
+        end
+    end
+
+    def index
+        @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
+    end
+
+    # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
+
+    def destroy
+        @ingredient = Ingredient.find(params[:id])
+        @ingredient.destroy
+        flash[:notice] = "Ingredient deleted"
+        redirect_to ingredients_path
+    end
+
+    private
+
+    def ingredient_params
+        params.require(:ingredient).permit(:name)
+    end
+
 end

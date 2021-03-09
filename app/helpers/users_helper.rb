@@ -8,8 +8,14 @@ module UsersHelper
     # source of ingredients - maybe they can be combined somewhere
 
     def user_ingredients(user)
-        ingredients = user.ingredients.uniq.select {|ing| ing.name != ""  }
+        ingredients = user.ingredients.uniq.select {|ing| ing.name != ""  }.sort{|a, b| a.name <=> b.name }
     end
+
+    def user_tags(user)
+        tags = user.tags.uniq.sort{|a, b| a.name <=> b.name}
+    end
+
+    # The final sort on user_ingredients and user_tags can probably be abstracted at some point, but the abstract sort I have now is a class level method on application_record
 
     def user_recipes(user, object)
         object.recipes.select{|r| r.user == user }

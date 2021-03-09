@@ -19,9 +19,17 @@
 <ul>
 <% @recipe.tags.each do |tag| %>
     <li>
-        <%= tag.name %>
+        <%= link_to "#{tag.name}", user_tag_path(@user, tag) %> <%= button_to "X", user_recipe_recipe_tag_path(@user, @recipe, tag.recipe_tags.find_by(recipe: @recipe)), method: :delete %>
     </li>
 <% end %>
 </ul>
 
+<%# I probably want to make the delete button for tags easier to read at some point; the path helper taking in an argument with two method calls is a bit ugly %>
+
 <%= link_to "Add a tag!", new_user_recipe_recipe_tag_path(@user, @recipe) %>
+<br>
+
+<%= link_to "Edit this recipe", edit_user_recipe_path(@user, @recipe) %>
+<br>
+
+<%= button_to "Delete this recipe", user_recipe_path(@user, @recipe), method: :delete %>
