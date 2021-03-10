@@ -1,7 +1,18 @@
 <%= link_to "Create a New Ingredient", new_ingredient_path %>
 
+<div>
+    <h3>Filter By Category:</h3>
+    <%= form_tag("/ingredients", method: "get") do %>
+        <%= select_tag "category", options_for_select(Ingredient::CATEGORIES) %>
+        <%= submit_tag "Filter" %>
+    <% end %>
+
+</div>
+
 <ul>
 <% @ingredients.each do |i| %>
-    <li><%= i.name %> used in <%= i.recipes.count %> recipes <%= button_to "X", ingredient_path(i), method: :delete %></li> 
-<%end%>
+    <li><%= button_to "X", ingredient_path(i), method: :delete %> <span><%= i.name %></span> used in <%= i.recipes.count %> recipes <span>category:</span> <%= i.category %> </li> 
+    <%= link_to "Edit this ingredient", edit_ingredient_path(i) %>
+    <br>
+    <%end%>
 </ul>
