@@ -2,7 +2,7 @@
 
 <div>
     <h3>Filter By Category:</h3>
-    <%= form_tag("/ingredients", method: "get") do %>
+    <%= form_tag(ingredients_path, method: "get") do %>
         <%= select_tag "category", options_for_select(Ingredient::CATEGORIES) %>
         <%= submit_tag "Filter" %>
     <% end %>
