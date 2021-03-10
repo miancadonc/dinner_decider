@@ -27,7 +27,7 @@ class IngredientsController < ApplicationController
 
     def index
         if !params[:category].blank?
-            @ingredients = Ingredient.where(category: params[:category])
+            @ingredients = Ingredient.by_category(params[:category]).list_alphabetically
         else
             @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
         end
