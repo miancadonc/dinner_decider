@@ -5,6 +5,25 @@ class Ingredient < ApplicationRecord
 
     validates :name, uniqueness: { message: "Ingredient already exists" }
 
+
+    CATEGORIES = [
+        "",
+        "dairy",
+        "seasoning",
+        "red meat",
+        "vegetable",
+        "oil",
+        "sauce",
+        "allium",
+        "baking",
+        "fowl",
+        "fish",
+        "noodles",
+        "other"
+    ]
+
+    
+
     
 
 
