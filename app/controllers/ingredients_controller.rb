@@ -26,7 +26,11 @@ class IngredientsController < ApplicationController
     end
 
     def index
-        @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
+        if !params[:category].blank?
+            @ingredients = Ingredient.by_category(params[:category]).list_alphabetically
+        else
+            @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
+        end
     end
 
     # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
@@ -38,10 +42,26 @@ class IngredientsController < ApplicationController
         redirect_to ingredients_path
     end
 
+    def edit
+        @ingredient = Ingredient.find(params[:id])
+    end
+
+    def update
+        @ingredient = Ingredient.find(params[:id])
+
+        if @ingredient.update(ingredient_params)
+            flash[:notice] = "Successfully updated ingredient!"
+            redirect_to ingredients_path
+        else
+            flash[:alert] = "Sorry, something went wrong"
+            render 'edit'
+        end
+    end
+
     private
 
     def ingredient_params
-        params.require(:ingredient).permit(:name)
+        params.require(:ingredient).permit(:name, :category)
     end
 
 end

@@ -5,6 +5,27 @@ class Ingredient < ApplicationRecord
 
     validates :name, uniqueness: { message: "Ingredient already exists" }
 
+    scope :by_category, -> (category) { where('category == ?', category) }
+
+
+    CATEGORIES = [
+        "",
+        "dairy",
+        "seasoning",
+        "red meat",
+        "vegetable",
+        "oil",
+        "sauce",
+        "allium",
+        "baking",
+        "fowl",
+        "fish",
+        "noodles",
+        "other"
+    ]
+
+    
+
     
 
 

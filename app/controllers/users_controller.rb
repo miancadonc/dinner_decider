@@ -40,6 +40,12 @@ class UsersController < ApplicationController
 
   def browse_by_ingredient
     @user = User.find(params[:user_id])
+
+    if !params[:category].blank?
+      @ingredients = @user.ingredients.by_category(params[:category]).list_alphabetically
+    else
+      @ingredients = @user.ingredients.list_alphabetically.select{|ing| ing.name != "" }
+    end
   end
 
   private
