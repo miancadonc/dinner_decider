@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+    helper_method :logged_in?, :current_user
+
+    private
 
     def sign_in_with_auth(auth_hash)
 
@@ -25,6 +28,19 @@ class ApplicationController < ActionController::Base
             redirect_to login_path, alert: "Unable to log in, please check email and password"
         end
 
+    end
+
+    def admin
+        logged_in? && current_user.admin == true
+    end
+
+
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
+
+    def logged_in?
+        !!current_user
     end
 
 
