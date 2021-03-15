@@ -2,9 +2,9 @@ class TagsController < ApplicationController
 
 
     before_action :find_user, only: :show
+    before_action :find_tag, only: [:show, :destroy]
 
     def show
-        @tag = Tag.find(params[:id])
     end
 
     def new
@@ -25,11 +25,10 @@ class TagsController < ApplicationController
     end
 
     def index
-        @tags = Tag.all.list_alphabetically
+        @tags = Tag.list_alphabetically
     end
 
     def destroy
-        @tag = Tag.find(params[:id])
         @tag.destroy
         flash[:notice] = "Tag deleted"
         redirect_to tags_path
@@ -39,6 +38,10 @@ class TagsController < ApplicationController
 
     def tag_params
         params.require(:tag).permit(:name)
+    end
+
+    def find_tag
+        @tag = Tag.find(params[:id])
     end
 
 end
