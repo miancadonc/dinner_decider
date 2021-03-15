@@ -1,7 +1,9 @@
 class TagsController < ApplicationController
 
+
+    before_action :find_user, only: :show
+
     def show
-        @user = User.find(params[:user_id])
         @tag = Tag.find(params[:id])
     end
 

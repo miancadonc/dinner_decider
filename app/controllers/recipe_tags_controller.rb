@@ -1,12 +1,13 @@
 class RecipeTagsController < ApplicationController
+
+  before_action :find_user
+
   def new
-    @user = User.find(params[:user_id])
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_tag = @recipe.recipe_tags.build
   end
 
   def create
-    @user = User.find(params[:user_id])
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_tag = @recipe.recipe_tags.build(recipe_tag_params)
 
@@ -20,7 +21,6 @@ class RecipeTagsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     @recipe = Recipe.find(params[:recipe_id])
     recipe_tag = RecipeTag.find(params[:id])
     recipe_tag.destroy

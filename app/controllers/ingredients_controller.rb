@@ -1,7 +1,8 @@
 class IngredientsController < ApplicationController
 
+    before_action :find_user, only: :show
+
     def show
-        @user = User.find(params[:user_id])
         @ingredient = Ingredient.find(params[:id])
     end
 

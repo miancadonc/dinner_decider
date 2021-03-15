@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :find_user, only: [:show, :random_recipes, :browse_by_tag, :browse_by_ingredient]
+
   def new
     @user = User.new
   end
@@ -26,20 +29,18 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  # previous 3 actions only kept in case I want to add full crud to users specifically at some later point
+
   def show
-    @user = User.find(session[:user_id])
   end
 
   def random_recipes
-    @user = User.find(params[:user_id])
   end
 
   def browse_by_tag
-    @user = User.find(params[:user_id])
   end
 
   def browse_by_ingredient
-    @user = User.find(params[:user_id])
 
     if !params[:category].blank?
       @ingredients = @user.ingredients.by_category(params[:category]).list_alphabetically
