@@ -1,9 +1,9 @@
 class IngredientsController < ApplicationController
 
     before_action :find_user, only: :show
+    before_action :find_ingredient, only: [:show, :destroy, :edit, :update]
 
     def show
-        @ingredient = Ingredient.find(params[:id])
     end
 
     # this controller method and its partner in the tag controller smell like code. 
@@ -37,18 +37,15 @@ class IngredientsController < ApplicationController
     # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
 
     def destroy
-        @ingredient = Ingredient.find(params[:id])
         @ingredient.destroy
         flash[:notice] = "Ingredient deleted"
         redirect_to ingredients_path
     end
 
     def edit
-        @ingredient = Ingredient.find(params[:id])
     end
 
     def update
-        @ingredient = Ingredient.find(params[:id])
 
         if @ingredient.update(ingredient_params)
             flash[:notice] = "Successfully updated ingredient!"
@@ -63,6 +60,10 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
         params.require(:ingredient).permit(:name, :category)
+    end
+
+    def find_ingredient
+        @ingredient = Ingredient.find(params[:id])
     end
 
 end
