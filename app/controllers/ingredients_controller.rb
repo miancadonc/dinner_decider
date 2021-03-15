@@ -6,9 +6,6 @@ class IngredientsController < ApplicationController
     def show
     end
 
-    # this controller method and its partner in the tag controller smell like code. 
-    # Maybe introducing before actions to the controllers (all of them, even) for params searchable objects is needed.
-
     def new
         @ingredient = Ingredient.new
     end
@@ -30,11 +27,11 @@ class IngredientsController < ApplicationController
         if !params[:category].blank?
             @ingredients = Ingredient.by_category(params[:category]).list_alphabetically
         else
-            @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
+            @ingredients = Ingredient.no_blanks.list_alphabetically
         end
     end
 
-    # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
+    # Ingredient no_blanks scope removes the blank ingredient; this isn't necessary for the by_category scope because the blank ingredient's category is nil
 
     def destroy
         @ingredient.destroy
