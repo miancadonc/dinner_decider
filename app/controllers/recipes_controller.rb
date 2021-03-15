@@ -1,9 +1,9 @@
 class RecipesController < ApplicationController
 
     before_action :find_user
+    before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
     def show
-        @recipe = Recipe.find(params[:id])
     end
 
     def new
@@ -28,12 +28,10 @@ class RecipesController < ApplicationController
     end
 
     def edit
-        @recipe = Recipe.find(params[:id])
         @recipe_ingredients = @recipe.recipe_ingredients
     end
 
     def update
-        @recipe = Recipe.find(params[:id])
 
         if @recipe.update(recipe_params)
             flash[:notice] = "Successfully updated recipe!"
@@ -46,7 +44,6 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        @recipe = Recipe.find(params[:id])
         @recipe.destroy
         flash[:notice] = "Recipe deleted"
         redirect_to user_path(@user)

@@ -1,14 +1,13 @@
 class RecipeTagsController < ApplicationController
 
   before_action :find_user
+  before_action :find_recipe
 
   def new
-    @recipe = Recipe.find(params[:recipe_id])
     @recipe_tag = @recipe.recipe_tags.build
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
     @recipe_tag = @recipe.recipe_tags.build(recipe_tag_params)
 
     if @recipe_tag.save
@@ -21,7 +20,6 @@ class RecipeTagsController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:recipe_id])
     recipe_tag = RecipeTag.find(params[:id])
     recipe_tag.destroy
     redirect_to user_recipe_path(@user, @recipe)
