@@ -6,27 +6,10 @@ class SessionsController < ApplicationController
 
   def create
 
-    
-
-   
-
-    # elsif auth_hash
-
-    #   pp auth_hash
-
-    
-
-    #   redirect_to root_path
-
-    # end
-
-    
-
-    # params[:password] = 
-
     if auth_hash
 
       sign_in_with_auth(auth_hash)
+      
 
     else
 
@@ -34,7 +17,7 @@ class SessionsController < ApplicationController
 
     end
 
-    # redirect_to root_path
+    # both sign_in methods defined in application_controller.rb
 
   end
 

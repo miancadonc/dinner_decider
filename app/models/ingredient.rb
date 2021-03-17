@@ -6,6 +6,7 @@ class Ingredient < ApplicationRecord
     validates :name, uniqueness: { message: "Ingredient already exists" }
 
     scope :by_category, -> (category) { where('category == ?', category) }
+    scope :no_blanks, -> { where.not('name == ""') }
 
 
     CATEGORIES = [

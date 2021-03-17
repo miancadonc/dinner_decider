@@ -1,12 +1,10 @@
 class IngredientsController < ApplicationController
 
-    def show
-        @user = User.find(params[:user_id])
-        @ingredient = Ingredient.find(params[:id])
-    end
+    before_action :find_user, only: :show
+    before_action :find_ingredient, only: [:show, :destroy, :edit, :update]
 
-    # this controller method and its partner in the tag controller smell like code. 
-    # Maybe introducing before actions to the controllers (all of them, even) for params searchable objects is needed.
+    def show
+    end
 
     def new
         @ingredient = Ingredient.new
@@ -29,25 +27,22 @@ class IngredientsController < ApplicationController
         if !params[:category].blank?
             @ingredients = Ingredient.by_category(params[:category]).list_alphabetically
         else
-            @ingredients = Ingredient.all.list_alphabetically.select{|ing| ing.name != ""}
+            @ingredients = Ingredient.no_blanks.list_alphabetically
         end
     end
 
-    # the index action's select could maybe be combined with the recipe_ingredients helper no_blank_ingredients
+    # Ingredient no_blanks scope removes the blank ingredient; this isn't necessary for the by_category scope because the blank ingredient's category is nil
 
     def destroy
-        @ingredient = Ingredient.find(params[:id])
         @ingredient.destroy
         flash[:notice] = "Ingredient deleted"
         redirect_to ingredients_path
     end
 
     def edit
-        @ingredient = Ingredient.find(params[:id])
     end
 
     def update
-        @ingredient = Ingredient.find(params[:id])
 
         if @ingredient.update(ingredient_params)
             flash[:notice] = "Successfully updated ingredient!"
@@ -62,6 +57,10 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
         params.require(:ingredient).permit(:name, :category)
+    end
+
+    def find_ingredient
+        @ingredient = Ingredient.find(params[:id])
     end
 
 end
